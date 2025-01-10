@@ -18,7 +18,7 @@ try:
 
     # リストに2番目の要素があるか確認
     if len(numbers) == 2 :
-        # 二つ目の文字列を採用
+        # 二つ目の整数を採用
         student_num_under3 = numbers[1]
 
         # 条件分岐
