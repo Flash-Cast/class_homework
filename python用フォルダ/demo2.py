@@ -23,6 +23,7 @@ def demo2f():
 
 # 比較回数を入力
 hikaku_n = int(input("整数を何回比較しますか？"))
+
 # 入力回数分関数を実行
 for i in range(hikaku_n):
     print(i+1,"回目の整数比較")
