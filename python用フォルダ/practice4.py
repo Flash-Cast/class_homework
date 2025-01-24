@@ -21,18 +21,19 @@ try:
     def manual_mean(data):
         total = 0
         count = 0
+
         for a in data:
             total += a
             count += 1
 
-        #要素の有無で条件分岐
+        #要素があるときに計算を進行
         if count > 0:
             average = float(total / count)
             return average
         
         #要素がないときに警告を表示
         else:
-            print("警告：数値がありません。")
+            print("警告：平均値を計算できません。")
             return None
         
     #手動計算で標準偏差を出すユーザー定義関数
@@ -40,11 +41,12 @@ try:
     def manual_stdev(data):
         count = 0
         total = 0
+
         for x in data:
             total += x
             count += 1
 
-        #要素の有無で条件分岐
+        #要素があるときに計算を進行
         if count > 0:
             mean = float(total / count)
 
@@ -55,6 +57,7 @@ try:
 
             std_dev = float(math.sqrt(variance))
             return std_dev
+
         #要素がないときに警告を表示
         else:
             print("警告：標準偏差を計算できません。")
@@ -64,7 +67,7 @@ try:
     manual_average = manual_mean(num_list)
     manual_std_dev = manual_stdev(num_list)
 
-    #statisticsライブラリを用いて計算した結果を変数に代入
+    #statisticsライブラリを用いて計算し,その結果をそれぞれ変数に代入
     library_average = float(statistics.mean(num_list))
     library_std_dev = float(statistics.pstdev(num_list))
 
@@ -75,9 +78,15 @@ try:
     ]
 
     #表で出力することで比較を視覚的にわかりやすくする。
-    headers = ["項目", "手動計算結果", "ライブラリ結果"]
-    print(tabulate(results, headers=headers, tablefmt="pretty"))
+    headers = ["", "手動計算結果", "ライブラリでの結果"]
+    print(tabulate(results, headers=headers, tablefmt="github"))
 
-#初めに数字以外を入力したときに例外処理
+    if manual_average == library_average and manual_std_dev == library_std_dev:
+        print("手動計算結果とライブラリを用いた結果は同じです。")
+    
+    else:
+        print("手動計算結果とライブラリを用いた結果が違います。エラー")
+
+#例外処理で文字の入力や小数の入力をエラーとして返す
 except ValueError:
     print("エラーです。")
